@@ -2,6 +2,8 @@ import Foundation
 
 public class M3UDecoder {
     
+    public init() {}
+    
     public func decode(_ data: Data) -> M3U? {
         guard let string = String(data: data, encoding: .utf8) else { return nil }
         var m3u = M3U()

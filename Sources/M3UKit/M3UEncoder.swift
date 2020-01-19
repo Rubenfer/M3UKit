@@ -2,6 +2,8 @@ import Foundation
 
 public class M3UEncoder {
     
+    public init() {}
+    
     public func encode(_ value: M3U) -> Data? {
         var m3uString = ""
         value.channels.forEach { channel in
