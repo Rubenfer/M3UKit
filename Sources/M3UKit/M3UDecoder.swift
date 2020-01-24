@@ -31,14 +31,18 @@ public class M3UDecoder {
     }
     
     private func parseArguments(_ info: Substring) -> [String:String] {
-        let channelArguments = info.components(separatedBy: .whitespaces).filter { $0.contains("=") }
+        var channelArguments = info.components(separatedBy: .whitespaces)
+        channelArguments.removeFirst()
+        channelArguments = channelArguments.joined(separator: " ").components(separatedBy: "\" ").filter { $0.contains("=") }
         var attributes: [String:String] = [:]
         channelArguments.forEach { argument in
             let components = argument.split(separator: "=")
             let key = components.first!
             var value = components.last!
             value.removeFirst()
-            value.removeLast()
+            if value.hasSuffix("\"") {
+                value.removeLast()
+            }
             attributes[String(key)] = String(value)
         }
         return attributes
