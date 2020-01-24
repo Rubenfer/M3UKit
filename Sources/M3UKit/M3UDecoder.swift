@@ -36,7 +36,7 @@ public class M3UDecoder {
         channelArguments = channelArguments.joined(separator: " ").components(separatedBy: "\" ").filter { $0.contains("=") }
         var attributes: [String:String] = [:]
         channelArguments.forEach { argument in
-            let components = argument.split(separator: "=")
+            let components = argument.split(separator: "=", maxSplits: 1)
             let key = components.first!
             var value = components.last!
             value.removeFirst()
